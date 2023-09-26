@@ -39,10 +39,13 @@
         //"drawing"
         let isDrawing = false;
 
-        let mousePos = { x: 0, y: 0 };
+        let mousePos = { x: undefined, y: undefined };
          //set mousePos on window.onload to mouse position on screen
 
-       
+       window.onload = function () {
+            mousePos.x = 0;
+            mousePos.y = 0;
+        };
 
 
 
@@ -74,7 +77,7 @@
         });
 
         canvas.addEventListener('mousemove', function (e) {
-            var mousePos = getMousePos(canvas, e);
+            mousePos = getMousePos(canvas, e);
             //console.log('Mouse position: ' + mousePos.x + ',' + mousePos.y);
 
             if (isDrawing) {
