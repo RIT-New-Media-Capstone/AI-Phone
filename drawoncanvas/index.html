@@ -7,9 +7,22 @@
     <title>Drawing on Canvas</title>
 
     <style>
+        /* color pallette varibles */
+        :root {
+            --color1: #f2f2f2;
+            --color2: #e6e6e6;
+            --color3: #cccccc;
+            --color4: #b3b3b3;
+            --color5: #999999;
+        }
+
+
         main {
             width: 800px;
             margin: 0 auto;
+            align-items: center;
+            align-self: center;
+            text-align: center;
         }
 
         #myCanvas {
@@ -22,19 +35,22 @@
             height: 100%;
             position: absolute;
         }
+        #siteTitle{
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1 id="siteTitle">Title</h1>
+        <h1 id="siteTitle">AI-Phone</h1>
     </header>
     <main>
 
         <canvas id="myCanvas" width="400" height="400"></canvas>
         <div id="cavas-dialog">
             <p id="ai-guess">AI guess will appear here</p>
-            <button id="submit-drawing">Finsih Drawing</button>
+            <button id="submit-drawing">Submit Drawing</button>
         </div>
     </main>
     <footer></footer>
