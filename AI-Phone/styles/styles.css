@@ -1,0 +1,31 @@
+/* color pallette varibles */
+:root {
+    --color1: #f2f2f2;
+    --color2: #e6e6e6;
+    --color3: #cccccc;
+    --color4: #b3b3b3;
+    --color5: #999999;
+}
+
+
+main {
+    width: 800px;
+    margin: 0 auto;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
+
+#myCanvas {
+    border: 1px solid black;
+    position: relative;
+}
+
+#convas-dialog {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#siteTitle{
+    text-align: center;
+}
