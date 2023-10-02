@@ -1,0 +1,136 @@
+:root {
+    --lavender-light: #E6E6FA;
+    --lavender: #82729D;
+    --lavender-dark: #6A6B9D;
+    --blue-light: #455F9A;
+    --blue: #41578E;
+    --blue-dark: #1a1f42;
+
+    --text-on-light: #333;
+    --text-on-dark: #FFF8E9;
+}
+
+
+body {
+    margin: 0;
+    background-color: var(--lavender-light);
+    overflow-y: hidden;
+}
+
+header {
+    padding: 10px;
+    text-align: center;
+    background-color: var(--blue-dark);
+}
+
+footer {
+    padding: 2px;
+    text-align: center;
+    background-color: var(--blue-dark);
+}
+
+
+main {
+    margin: 10px;
+    padding: 10px;
+
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding-top: 0;
+}
+
+#canvas-div {
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#canvas-dialog {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#player-name {
+    text-align: left;
+    color: var(--text-on-dark);
+    background-color: var(--blue);
+    margin: 0;
+    padding: 7px;
+    width: 30%;
+
+    border-top-right-radius: 30px;
+
+}
+
+#myCanvas {
+    border: 10px ridge var(--blue);
+    background-color: whitesmoke;
+    box-shadow: -2px 15px 59px -14px rgba(106, 107, 157.41);
+    position: relative;
+}
+
+
+#siteTitle {
+    text-align: center;
+    color: var(--text-on-dark);
+    margin: 0;
+    font-size: 30px;
+
+}
+
+#project-credits {
+    text-align: center;
+    color: var(--text-on-dark);
+    margin: 0;
+    font-size: 12px;
+}
+
+#form {
+    margin: 20px auto;
+    margin-top: 80px;
+    margin-bottom: 70px;
+    padding:5px;
+    width: 400px;
+    height:300px;
+    background-color: var(--lavender-dark);
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  #room-id-enter,
+  #player-name-enter,
+  #rounds-enter {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #enter-room-btn {
+    width: 90%;
+    padding: 10px;
+    background-color: #41578E; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  #enter-room-btn:hover:enabled {
+    background-color: #1a1f42; 
+  }
+
+  #enter-room-btn:disabled{
+    color:#455F9A;
+    background-color: #333;
+  }
+  
