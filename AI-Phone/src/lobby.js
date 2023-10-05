@@ -3,12 +3,15 @@ let roomIdInput;
 let roundInput;
 let enterRoombtn;
 
+let infoPopup;
+
 
 const init = () => {
     roomIdInput = document.querySelector("#room-id-enter");
     playerNameInput = document.querySelector("#player-name-enter");
     roundInput = document.querySelector("#rounds-enter");
     enterRoombtn = document.querySelector('#enter-room-btn');
+    infoPopup = document.querySelector('#popup');
 
     enterRoombtn.addEventListener("click", enterRoom);
     roomIdInput.addEventListener("input", updateButtonState);
@@ -32,6 +35,11 @@ const enterRoom = () => {
 const updateButtonState = () => {
     enterRoombtn.disabled = roomIdInput.value.trim() === "" || playerNameInput.value.trim() === "" || roundInput.value.trim() === "";
 };
+
+const displayPopup=()=>{
+
+
+}
 
 window.onload = () => {
     init();
