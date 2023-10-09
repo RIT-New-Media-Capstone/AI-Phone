@@ -29,16 +29,16 @@ gameStructure
             round: 1,
             player: "player1",
             drawing: [
-                [["mouseX"], ["mouseY"], ["time"]],
-                [["mouseX"], ["mouseY"], ["time"]],
+                {x: x, y:y},
+                {x: x, y:y},
             ]
         },
         {
             round: 2,
             player: "player2",
             drawing: [
-                [["mouseX"], ["mouseY"], ["time"]],
-                [["mouseX"], ["mouseY"], ["time"]],
+                {x: x, y:y},
+                {x: x, y:y},
             ]
         }
     ]
