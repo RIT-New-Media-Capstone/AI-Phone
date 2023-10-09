@@ -4,19 +4,28 @@ let timeofLine = 0;
 let timeOfPoint = 0;
 let startofLine;
 
-let drawing = [];
 //[line[[mouseX][mouseY][time]]]
+//[{x,y}, {}]
+
+let coords = [];
 
 let height;
 let width;
 
+let canvas;
+let ctx;
+
 const init = () => {
     // Canvas
-    const canvas = document.querySelector('#myCanvas');
-    const ctx = canvas.getContext('2d');
+    canvas = document.querySelector('#myCanvas');
+    ctx = canvas.getContext('2d');
     const submitDrawingbtn = document.querySelector('#submit-drawing');
     width = canvas.width;
     height = canvas.height;
+
+    const roomID = localStorage.getItem("id");
+
+    console.log(roomID);
 
     // New line started
     canvas.addEventListener("mousedown", (e) => {
@@ -24,7 +33,7 @@ const init = () => {
         y = mousePos.y;
         isDrawing = true;
         startofLine = e.timeStamp;
-        drawing.push([[], []]);//new line in drawing
+        recordCoor(e);
     });
 
     // Line drawn
@@ -34,7 +43,9 @@ const init = () => {
             drawLine(ctx, x, y, mousePos.x, mousePos.y);
             x = mousePos.x;
             y = mousePos.y;
-            addToArray(x,y, e);
+            //addToArray(x, y, e);
+
+            recordCoor(e);
 
         }
     });
@@ -42,26 +53,27 @@ const init = () => {
     // Line ended
     canvas.addEventListener("mouseup", (e) => {
         isDrawing = false;
-        addToArray(x,y, e);
+        recordCoor(e);
+        //addToArray(x, y, e);
 
     });
 
     // Submit drawing
-    submitDrawingbtn.addEventListener("click", function(){
-        submitDrawing(ctx, width, height, drawing);
+    submitDrawingbtn.addEventListener("click", function () {
+        submitDrawing(ctx, width, height, coords);
     }, false);
 
     mousePos.x = 0;
     mousePos.y = 0;
+
+
 }
 
 // formats drawing data
-const addToArray = (x, y, e) => {
-    timeofLine = e.timeStamp - startofLine;
-    drawing[drawing.length - 1][0].push(x);
-    drawing[drawing.length - 1][1].push(y);
-    //drawing[drawing.length - 1][2].push(time);
-}
+// const addToArray = (x, y, e) => {
+//     timeofLine = e.timeStamp - startofLine;
+//     drawingArrayObj.push({x:x, y:y});
+// }
 
 
 // get time at start of line then subtract from time at mouse up
@@ -87,14 +99,60 @@ const submitDrawing = (context) => {
     //send drawing to AI
     //clear drawingArray
     //clear cavas
-    console.log(drawing);
-    drawing = [];
+    const mbb = getMinBox()
+    const dpi = window.devicePixelRatio;
+    const imgData = context.getImageData(mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
+    // console.log("mbb: ", mbb);
+    // console.log("dpi: ", dpi);
+    // console.log("imgData Equation: ", mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
+    // console.log(imgData);
+
     context.clearRect(0, 0, width, height);
-    console.log("Sending Drawing( not really)");
-    console.log(drawing);
+    //console.log(coords);
+
+    coords = [];
+
 
 };
+
+const getMinBox = () => {
+    let coorX = coords.map((p) => p.x);
+    let coorY = coords.map((p) => p.y);
+
+    // Find top left corner
+    let min_coords = {
+        x: Math.min(...coorX),
+        y: Math.min(...coorY)
+    };
+
+    // Find right bottom corner
+    let max_coords = {
+        x: Math.max(...coorX),
+        y: Math.max(...coorY)
+    };
+
+    return {
+        min: min_coords,
+        max: max_coords
+    };
+};
+
+const recordCoor = (event) => {
+    // Get current mouse coordinate
+    // let pointer = ctx.getPointer(event.e);
+    let posX = mousePos.x;
+    let posY = mousePos.y;
+
+    // Record the point if within the canvas and the mouse is pressed
+    if (posX >= 0 && posY >= 0) {
+        coords.push({ x: posX, y: posY });
+    }
+};
+
 
 window.onload = () => {
     init();
 };
+
+
+

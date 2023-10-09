@@ -3,7 +3,12 @@ let roomIdInput;
 let roundInput;
 let enterRoombtn;
 
-let infoPopup;
+let infoPopupbtn;
+let closePopupbtn;
+
+const loginInfo={
+    players:[],
+};
 
 
 const init = () => {
@@ -11,12 +16,16 @@ const init = () => {
     playerNameInput = document.querySelector("#player-name-enter");
     roundInput = document.querySelector("#rounds-enter");
     enterRoombtn = document.querySelector('#enter-room-btn');
-    infoPopup = document.querySelector('#popup');
+    infoPopupbtn = document.querySelector('#info-btn');
+    closePopupbtn = document.querySelector('#pop-close');
 
     enterRoombtn.addEventListener("click", enterRoom);
     roomIdInput.addEventListener("input", updateButtonState);
     playerNameInput.addEventListener("input", updateButtonState);
     roundInput.addEventListener("input", updateButtonState);
+
+    infoPopupbtn.addEventListener("click", displayPopup);
+    closePopupbtn.addEventListener("click", displayPopup);
 
     updateButtonState();
 };
@@ -25,6 +34,12 @@ const enterRoom = () => {
     playerName = playerNameInput.value;
     roomId = roomIdInput.value;
     rounds = roundInput.value;
+
+    loginInfo.players.push(playerName);
+    loginInfo.id = roomId;
+    totalRounds = rounds;
+
+    localStorage.setItem("id", roomId);
 
     console.log(playerName + " " + roomId + " " + rounds);
     // Send data to Firebase
@@ -38,7 +53,7 @@ const updateButtonState = () => {
 
 const displayPopup=()=>{
 
-
+    document.querySelector('#popup').classList.toggle('active');
 }
 
 window.onload = () => {

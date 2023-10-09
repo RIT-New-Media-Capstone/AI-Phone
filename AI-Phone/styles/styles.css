@@ -35,7 +35,7 @@ main {
     padding: 10px;
 
     margin-top: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding-top: 0;
 }
 
@@ -53,6 +53,28 @@ main {
     justify-content: center;
     text-align: center;
 }
+#canvas-dialog p {
+    margin: 0;
+    padding:3px;
+}
+
+#submit-drawing{
+    background-color: var(--blue);
+    color: var(--text-on-dark);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 5px solid var(--blue);
+    margin-top:5px;
+    transition: all 0.3s ease;
+
+}
+#submit-drawing:hover {
+    background-color: var(--lavender-dark);
+    border-color: var(--lavender-dark);
+    color: var(--text-on-dark);
+  }
 
 #player-name {
     text-align: left;
@@ -91,46 +113,135 @@ main {
 
 #form {
     margin: 20px auto;
-    margin-top: 80px;
-    margin-bottom: 70px;
-    padding:5px;
+    margin-top: 90px;
+    margin-bottom: 180px;
+    padding: 5px;
     width: 400px;
-    height:300px;
+    height: 300px;
     background-color: var(--lavender-dark);
     border-radius: 5px;
     text-align: center;
-  }
-  
-  #room-id-enter,
-  #player-name-enter,
-  #rounds-enter {
+}
+
+#room-id-enter,
+#player-name-enter,
+#rounds-enter {
     width: 90%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-  }
-  
-  #enter-room-btn {
+}
+
+#enter-room-btn {
     width: 90%;
     padding: 10px;
-    background-color: #41578E; 
-    color: #fff; 
+    background-color: #41578E;
+    color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
+}
+
+#enter-room-btn:hover:enabled {
+    background-color: #1a1f42;
+}
+
+#enter-room-btn:disabled {
+    color: #455F9A;
+    background-color: #333;
+}
+
+.popup .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .popcontent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: var(--lavender-dark);
+    width: 350px;
+    height:300px;
+    max-width: 90%;
+    z-index: 2;
+    text-align: center;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup.active .overlay {
+    display: block;
+
+}
+
+.popup.active .popcontent {
+    transition: transform 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+.popup.active #pop-title {
+    font-size: 26px;
+    margin: 5px;
+    
+    color: var(--lavender-light);
+}
+
+.popup #pop-text {
+    font-size: 16px;
+    margin-top: 10px;
+    padding:10px;
+    color: var(--text-on-dark);
+}
+
+#pop-close{
+    padding: 10px 20px;
+    background-color: var(--lavender-light);
+    color: var(--text-on-light); 
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  #enter-room-btn:hover:enabled {
-    background-color: #1a1f42; 
+#pop-close:hover {
+    background-color: var(--blue-light);
+    color: var(--text-on-dark);
   }
 
-  #enter-room-btn:disabled{
-    color:#455F9A;
-    background-color: #333;
+  #info-btn{
+    padding: 10px 20px;
+    background-color: var(--lavender-light);
+    color: var(--text-on-light); 
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 5px solid var(--blue);
+    position: absolute;
+    right: 0;
+    top:85%;
+    margin: 10px;
+    
   }
-  
+  #info-btn:hover {
+    background-color: var(--blue-light);
+    color: var(--text-on-dark);
+  }
