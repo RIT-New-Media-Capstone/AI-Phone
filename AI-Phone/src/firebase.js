@@ -23,52 +23,6 @@ const app = initializeApp(firebaseConfig);
 console.log(app);
 const db = getFirestore(app);
 
-const testData = {
-    id: "game2",
-    players: ["p1", "p2",],
-    currentRound: 1,
-    totalRounds: 3,
-    guesses: [
-        {
-            round: 1,
-            guess: "guess1"
-        },
-        {
-            round: 2,
-            guess: "guess2"
-        }
-    ],
-    drawings: [
-        {
-            round: 1,
-            player: "player1",
-            drawing: [
-                {
-                    "x": 5,
-                    "y": 10,
-                },
-                {
-                    "x": 15,
-                    "y": 20,
-                },
-            ]
-        },
-        {
-            round: 2,
-            player: "player2",
-            drawing: [
-                {
-                    "x": 25,
-                    "y": 30,
-                },
-                {
-                    "x": 35,
-                    "y": 40,
-                },
-            ]
-        }
-    ]
-}
 
 // returns value of a specific key
 // takes an id and the key of what to get
@@ -110,11 +64,12 @@ const updateGameData = async (game, key, value) => {
     newVal[key] = value
     await updateDoc(docRef, newVal);
 }
+
 // returns the drawing data for a round
 const addPlayer = async (game, value) => {
     const docRef = doc(db, "gameStructure", game);
 
-    // Adds a new drawing to the drawings array field
+    // Adds a new player to the players array field
     // arrayUnion() adds elements to an array but only elements not already present
     await updateDoc(docRef, {
         players: arrayUnion(value)
@@ -153,13 +108,6 @@ const addGuessData = async (game, value, round) => {
     });
 }
 
-// gets all drawing data
-const getData = async () => {
-    const docRef = await getDocs(collection(db, "gameStructure"));
-    docRef.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-    });
-}
 
 // creates a new gameStructure
 const addData = async (data) => {
@@ -189,28 +137,19 @@ const test = {
 // addGuessData("game3", "testing", round1);
 // getGuess("game3", 1);
 
-// updateGameData("drawing", "currentRound", 2);
-
-// let round2 = await getGameData("game3", "currentRound");
-// console.log(round2);
-
-// addDrawingData("game3", [{ x: 69, y: 69 }, { x: 69, y: 69 }], round2, p1[1]);
-// addGuessData("game3", "clown", round2);
-// getGuess("game3", 2);
-
-// getDrawing("game3", 1)
 
 
-// getData();
 
-// getGameData("game1", "drawings");
-// updateGameData("game2", "id", "game2");
-// addDrawingData("game2", [{ x: 429, y: 429 }, { x: 429, y: 429 }], 3, "player1")
-// getGameData("game2", "id");
-// updateGameData("game2", "currentRound", 2);
-// getGameData("game2", "currentRound");
-// getGameData("game2", "totalRounds");
-// getDrawing("game1", 1)
+export { db, addData, addPlayer, getGameData, addDrawingData, addGuessData, getGuess,updateGameData, getDrawing };
 
+/*
+un-needed function 
+// gets all drawing data
+const getData = async () => {
+    const docRef = await getDocs(collection(db, "gameStructure"));
+    docRef.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+    });
+}
 
-export { db };
+*/

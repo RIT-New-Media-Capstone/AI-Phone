@@ -1,10 +1,11 @@
+import * as firebase from "./firebase.js";
+
 let isDrawing = false;
 let mousePos = { x: undefined, y: undefined };
 let timeofLine = 0;
 let timeOfPoint = 0;
 let startofLine;
 
-//[line[[mouseX][mouseY][time]]]
 //[{x,y}, {}]
 
 let coords = [];
@@ -15,6 +16,12 @@ let width;
 let canvas;
 let ctx;
 
+let x;
+let y;
+
+let roomID;
+let playerName;
+
 const init = () => {
     // Canvas
     canvas = document.querySelector('#myCanvas');
@@ -23,7 +30,12 @@ const init = () => {
     width = canvas.width;
     height = canvas.height;
 
-    const roomID = localStorage.getItem("id");
+    roomID = localStorage.getItem("id");
+    playerName = localStorage.getItem("playerName");
+
+    document.querySelector('#room-id-display').innerHTML="Room ID: "+roomID;
+    document.querySelector('#player-name').innerHTML="Player: " + playerName;
+
 
     console.log(roomID);
 
@@ -69,13 +81,6 @@ const init = () => {
 
 }
 
-// formats drawing data
-// const addToArray = (x, y, e) => {
-//     timeofLine = e.timeStamp - startofLine;
-//     drawingArrayObj.push({x:x, y:y});
-// }
-
-
 // get time at start of line then subtract from time at mouse up
 const getMousePos = (canvas, evt) => {
     const rect = canvas.getBoundingClientRect();
@@ -95,20 +100,25 @@ const drawLine = (context, x1, y1, x2, y2) => {
     context.closePath();
 };
 
-const submitDrawing = (context) => {
-    //send drawing to AI
+const submitDrawing = async (context) => {
+    //send drawing to firebase and AI
     //clear drawingArray
     //clear cavas
     const mbb = getMinBox()
     const dpi = window.devicePixelRatio;
     const imgData = context.getImageData(mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-    // console.log("mbb: ", mbb);
-    // console.log("dpi: ", dpi);
-    // console.log("imgData Equation: ", mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-    // console.log(imgData);
+    
+    // send to Firebase with raw coords
+    // Firebase doesn't support imageData type
+    let p = await firebase.getGameData(roomID, "players");
+    let round = await firebase.getGameData(roomID, "currentRound");
+    firebase.addDrawingData(roomID, coords, round, p[0]);
+
+    // send to AI with imgData type
+    // send imgData
+
 
     context.clearRect(0, 0, width, height);
-    //console.log(coords);
 
     coords = [];
 

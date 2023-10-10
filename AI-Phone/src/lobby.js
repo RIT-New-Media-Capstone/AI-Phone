@@ -1,3 +1,5 @@
+import * as firebase from "./firebase.js";
+
 let playerNameInput;
 let roomIdInput;
 let roundInput;
@@ -6,9 +8,6 @@ let enterRoombtn;
 let infoPopupbtn;
 let closePopupbtn;
 
-const loginInfo={
-    players:[],
-};
 
 
 const init = () => {
@@ -30,21 +29,30 @@ const init = () => {
     updateButtonState();
 };
 
-const enterRoom = () => {
-    playerName = playerNameInput.value;
-    roomId = roomIdInput.value;
-    rounds = roundInput.value;
+const enterRoom = async() => {
+    let playerName = playerNameInput.value;
+    let roomId = roomIdInput.value;
+    let rounds = roundInput.value;
 
-    loginInfo.players.push(playerName);
-    loginInfo.id = roomId;
-    totalRounds = rounds;
 
     localStorage.setItem("id", roomId);
+    localStorage.setItem("playerName", playerName);
 
     console.log(playerName + " " + roomId + " " + rounds);
+   
     // Send data to Firebase
+    const newGame = {
+        "id": roomId,
+        "players": [playerName],
+        "currentRound": 1,
+        "totalRounds": rounds,
+    };
 
-    window.location.href="index.html";
+    let add = firebase.addData(newGame);
+    add.then( ()=> {
+        window.location.href="index.html";
+    })
+
 };
 
 const updateButtonState = () => {
