@@ -31,13 +31,13 @@ const init = () => {
 };
 
 const enterRoom = () => {
-    playerName = playerNameInput.value;
-    roomId = roomIdInput.value;
-    rounds = roundInput.value;
+    let=playerName = playerNameInput.value;
+    let=roomId = roomIdInput.value;
+    let=rounds = roundInput.value;
 
     loginInfo.players.push(playerName);
     loginInfo.id = roomId;
-    totalRounds = rounds;
+    loginInfo.totalRounds = rounds;
 
     localStorage.setItem("id", roomId);
 
