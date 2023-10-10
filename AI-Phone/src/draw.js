@@ -24,8 +24,10 @@ const init = () => {
     height = canvas.height;
 
     const roomID = localStorage.getItem("id");
+    const playerName = localStorage.getItem("playerName");
 
-    console.log(roomID);
+    document.querySelector('#room-id-display').innerHTML="Room ID: "+roomID;
+    document.querySelector('#player-name').innerHTML=playerName;
 
     // New line started
     canvas.addEventListener("mousedown", (e) => {
@@ -105,7 +107,7 @@ const submitDrawing = (context) => {
     // console.log("mbb: ", mbb);
     // console.log("dpi: ", dpi);
     // console.log("imgData Equation: ", mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-    // console.log(imgData);
+    //console.log(imgData);
 
     context.clearRect(0, 0, width, height);
     //console.log(coords);

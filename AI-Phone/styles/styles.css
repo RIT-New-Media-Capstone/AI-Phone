@@ -245,3 +245,11 @@ main {
     background-color: var(--blue-light);
     color: var(--text-on-dark);
   }
+
+  #room-id-display{
+    position: absolute;
+    right: 0;
+    top:10%;
+    margin: 10px;
+    color: var(--lavender-dark);
+  }

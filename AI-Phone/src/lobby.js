@@ -40,6 +40,7 @@ const enterRoom = () => {
     loginInfo.totalRounds = rounds;
 
     localStorage.setItem("id", roomId);
+    localStorage.setItem("playerName", playerName);
 
     console.log(playerName + " " + roomId + " " + rounds);
     // Send data to Firebase
