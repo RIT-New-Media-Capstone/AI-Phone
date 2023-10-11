@@ -82,7 +82,7 @@ main {
     background-color: var(--blue);
     margin: 0;
     padding: 7px;
-    width: 30%;
+    width: 50%;
 
     border-top-right-radius: 30px;
 
@@ -237,7 +237,7 @@ main {
     border: 5px solid var(--blue);
     position: absolute;
     right: 0;
-    top:85%;
+    top:600px;
     margin: 10px;
     
   }
@@ -249,7 +249,7 @@ main {
   #room-id-display{
     position: absolute;
     right: 0;
-    top:10%;
+    top:80px;
     margin: 10px;
     color: var(--lavender-dark);
   }
