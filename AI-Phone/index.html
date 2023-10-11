@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Phone</title>
-    <script src="src/draw.js"></script>
+    <script  type="module" src="src/draw.js"></script>
     <script src="src/index.js"></script>
+    <script type="module" src="src/firebase.js"></script>
     <script type='module' src="src/ai.js"></script>
     <script type='module' src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
@@ -19,16 +20,22 @@
         <h1 id="siteTitle">AI-Phone</h1>
     </header>
     <main>
-
-        <canvas id="myCanvas" width="400" height="400"></canvas>
-        <div id="cavas-dialog">
-            <p id="ai-guess">AI guess will appear here</p>
-            <button id="submit-drawing">Submit Drawing</button>
+        <p id="room-id-display"></p>
+        <div id="canvas-div">
+            <p id="player-name">Player 1</p> <!-- grab players name from firebase (in theory) -->
+            <canvas id="myCanvas" width="400" height="400"></canvas>
+        </div>
+        <div id="canvas-dialog">
+            <p id="round-number">Round: 1</p>
+            <p id="ai-guess">AI guess/prompt will appear here</p>
+            <button id="submit-drawing" title="Sumbit Drawing for AI to Guess">Submit Drawing</button>
         </div>
     </main>
-    <footer></footer>
+    <footer>
+        <p id="project-credits">IGME 587 || Jordan Reeves, Raine Taber, Olivia Lewis</p>
+    </footer>
 
-    
+
 </body>
 
 </html>

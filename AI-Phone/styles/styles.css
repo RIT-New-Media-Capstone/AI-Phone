@@ -1,31 +1,255 @@
-/* color pallette varibles */
 :root {
-    --color1: #f2f2f2;
-    --color2: #e6e6e6;
-    --color3: #cccccc;
-    --color4: #b3b3b3;
-    --color5: #999999;
+    --lavender-light: #E6E6FA;
+    --lavender: #82729D;
+    --lavender-dark: #6A6B9D;
+    --blue-light: #455F9A;
+    --blue: #41578E;
+    --blue-dark: #1a1f42;
+
+    --text-on-light: #333;
+    --text-on-dark: #FFF8E9;
+}
+
+
+body {
+    margin: 0;
+    background-color: var(--lavender-light);
+    overflow-y: hidden;
+}
+
+header {
+    padding: 10px;
+    text-align: center;
+    background-color: var(--blue-dark);
+}
+
+footer {
+    padding: 2px;
+    text-align: center;
+    background-color: var(--blue-dark);
 }
 
 
 main {
-    width: 800px;
-    margin: 0 auto;
-    align-items: center;
-    align-self: center;
+    margin: 10px;
+    padding: 10px;
+
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-top: 0;
+}
+
+#canvas-div {
+    width: 30%;
+    margin: auto;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#canvas-dialog {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#canvas-dialog p {
+    margin: 0;
+    padding:3px;
+}
+
+#submit-drawing{
+    background-color: var(--blue);
+    color: var(--text-on-dark);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 5px solid var(--blue);
+    margin-top:5px;
+    transition: all 0.3s ease;
+
+}
+#submit-drawing:hover {
+    background-color: var(--lavender-dark);
+    border-color: var(--lavender-dark);
+    color: var(--text-on-dark);
+  }
+
+#player-name {
+    text-align: left;
+    color: var(--text-on-dark);
+    background-color: var(--blue);
+    margin: 0;
+    padding: 7px;
+    width: 50%;
+
+    border-top-right-radius: 30px;
+
 }
 
 #myCanvas {
-    border: 1px solid black;
+    border: 10px ridge var(--blue);
+    background-color: whitesmoke;
+    box-shadow: -2px 15px 59px -14px rgba(106, 107, 157.41);
     position: relative;
 }
 
-#convas-dialog {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+
+#siteTitle {
+    text-align: center;
+    color: var(--text-on-dark);
+    margin: 0;
+    font-size: 30px;
+
 }
-#siteTitle{
+
+#project-credits {
+    text-align: center;
+    color: var(--text-on-dark);
+    margin: 0;
+    font-size: 12px;
+}
+
+#form {
+    margin: 20px auto;
+    margin-top: 90px;
+    margin-bottom: 180px;
+    padding: 5px;
+    width: 400px;
+    height: 300px;
+    background-color: var(--lavender-dark);
+    border-radius: 5px;
     text-align: center;
 }
+
+#room-id-enter,
+#player-name-enter,
+#rounds-enter {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#enter-room-btn {
+    width: 90%;
+    padding: 10px;
+    background-color: #41578E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+#enter-room-btn:hover:enabled {
+    background-color: #1a1f42;
+}
+
+#enter-room-btn:disabled {
+    color: #455F9A;
+    background-color: #333;
+}
+
+.popup .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .popcontent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: var(--lavender-dark);
+    width: 350px;
+    height:300px;
+    max-width: 90%;
+    z-index: 2;
+    text-align: center;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup.active .overlay {
+    display: block;
+
+}
+
+.popup.active .popcontent {
+    transition: transform 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+.popup.active #pop-title {
+    font-size: 26px;
+    margin: 5px;
+    
+    color: var(--lavender-light);
+}
+
+.popup #pop-text {
+    font-size: 16px;
+    margin-top: 10px;
+    padding:10px;
+    color: var(--text-on-dark);
+}
+
+#pop-close{
+    padding: 10px 20px;
+    background-color: var(--lavender-light);
+    color: var(--text-on-light); 
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+#pop-close:hover {
+    background-color: var(--blue-light);
+    color: var(--text-on-dark);
+  }
+
+  #info-btn{
+    padding: 10px 20px;
+    background-color: var(--lavender-light);
+    color: var(--text-on-light); 
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 5px solid var(--blue);
+    position: absolute;
+    right: 0;
+    top:600px;
+    margin: 10px;
+    
+  }
+  #info-btn:hover {
+    background-color: var(--blue-light);
+    color: var(--text-on-dark);
+  }
+
+  #room-id-display{
+    position: absolute;
+    right: 0;
+    top:80px;
+    margin: 10px;
+    color: var(--lavender-dark);
+  }
