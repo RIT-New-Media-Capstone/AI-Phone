@@ -165,7 +165,7 @@ const recordCoor = (event) => {
 
 window.onload = async () => {
     init();
-    await ai.modelPromise;
+    //await ai.modelPromise;
     //ai.grabModel();
 };
 
