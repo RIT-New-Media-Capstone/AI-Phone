@@ -28,6 +28,11 @@ const loadModel = async () => {
     }
   };
 
+  const modelPromise = tf.loadLayersModel('https://cursedmushroom.github.io/AI-Phone-Model/model.json')
+  .then((loadedModel) => {
+    model = loadedModel;
+  });
+
 // pre-processing
 function preProcess(imgData) {
   try {
@@ -66,4 +71,4 @@ let pred = (imgData) => {
     }
   }
   //export { loadModel, preProcess, pred};
-  export { loadModel, preProcess, pred, grabModel };
+  export { loadModel, preProcess, pred, grabModel, modelPromise };

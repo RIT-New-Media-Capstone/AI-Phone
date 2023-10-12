@@ -163,9 +163,10 @@ const recordCoor = (event) => {
 };
 
 
-window.onload = () => {
+window.onload = async () => {
     init();
-    ai.grabModel();
+    await ai.modelPromise;
+    //ai.grabModel();
 };
 
 
