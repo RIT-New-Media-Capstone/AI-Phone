@@ -119,7 +119,7 @@ const submitDrawing = async (context) => {
     // send to AI with imgData type
     // send imgData
     let processedImg = ai.preProcess(imgData);
-    print(ai.pred(processedImg))
+    console.log(ai.pred(processedImg))
 
     context.clearRect(0, 0, width, height);
 
@@ -165,6 +165,7 @@ const recordCoor = (event) => {
 
 window.onload = () => {
     init();
+    ai.grabModel();
 };
 
 
