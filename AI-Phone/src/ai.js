@@ -1,7 +1,10 @@
-import * as tf from 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest'
+import * as tf from 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
 
 
-let model = await tf.loadLayersModel('model/model.json');
+let model;
+const loadModel = async()=>{
+    model = await loadLayersModel('model.json')
+}
 
 // pre-processing
 // grab the data from firebase
@@ -9,8 +12,8 @@ let model = await tf.loadLayersModel('model/model.json');
 
 // let imageData = firebase.getData(whatever);
 
-function preProcess(imgdata){
-    return tf.tidy( ()=>{
+function preProcess(imgData){
+
         //convert image data to tensor
         let tensor = tf.browser.fromPixels(imgData,numChannels= 1);
         //resize to 28x28
@@ -22,13 +25,13 @@ function preProcess(imgdata){
         //we add a dimension to get a batch shape
         const batched = normalized.expandDims(0);
         return batched;
-    })
+    
 }
 
 //predicts the probabilities of shape [N, 100]
-let pred = (imgData) => {return model.predict(preProcess(imgData)).dataSync()};
+let pred = (imgData) => {return model.predict(imgData).dataSync()};
 
-export {model, preProcess, pred}
+export {model, loadModel,preProcess, pred}
 
 //incomplete. original code in python, going to take some time to transpile
 // let model_fn = (features,labels,mode,params)=>{

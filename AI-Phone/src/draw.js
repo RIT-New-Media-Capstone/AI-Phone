@@ -1,4 +1,6 @@
 import * as firebase from "./firebase.js";
+import * as ai from "./ai.js";
+// import {loadLayersModel} from '@tensorflow/tfjs';
 
 let isDrawing = false;
 let mousePos = { x: undefined, y: undefined };
@@ -107,7 +109,7 @@ const submitDrawing = async (context) => {
     const mbb = getMinBox()
     const dpi = window.devicePixelRatio;
     const imgData = context.getImageData(mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-    
+    console.log(imgData)
     // send to Firebase with raw coords
     // Firebase doesn't support imageData type
     let p = await firebase.getGameData(roomID, "players");
@@ -116,7 +118,8 @@ const submitDrawing = async (context) => {
 
     // send to AI with imgData type
     // send imgData
-
+    let processedImg = ai.preProcess(imgData);
+    print(ai.pred(processedImg))
 
     context.clearRect(0, 0, width, height);
 
